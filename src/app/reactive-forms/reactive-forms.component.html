@@ -1,35 +1,36 @@
-<h1>reactive-forms</h1>
+<h1>Reactive Forms</h1>
 
-<form [formGroup]="userForm"(ngSubmit)="onSubmit()">
+<div class="container texto-formulario">
+    <p>Para ingresar, completa con tu información de usuario:</p>
+</div>
 
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
-        <input 
-        formControlName="email" 
-        type="email" 
-        class="form-control" 
-        id="exampleInputEmail1" 
-        aria-describedby="emailHelp" 
-        [ngClass]="{'is-invalid': emailControlIsInvalid }">
+<div class="container formulario">
+    <form [formGroup]="userForm"(ngSubmit)="onSubmit()">
 
-        <div class="invalid-feedback">
-            <ng-container *ngIf="emailControl.errors?.['required']"> Este campo es requerido </ng-container>
-           <ng-container *ngIf="emailControl.errors?.['email']"> Ingresa un email válido</ng-container>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label texto-formulario">Ingresa tu correo electrónico</label>
+            <input 
+            formControlName="email" 
+            type="email" 
+            class="form-control" 
+            id="exampleInputEmail1" 
+            aria-describedby="emailHelp" 
+            [ngClass]="{'is-invalid': emailControlIsInvalid }">
+    
+            <div class="invalid-feedback">
+                <ng-container *ngIf="emailControl.errors?.['required']"> Este campo es requerido </ng-container>
+               <ng-container *ngIf="emailControl.errors?.['email']"> Ingresa un email válido</ng-container>
+            </div>
         </div>
-    </div>
-
-
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
-    </div>
-
-
-    <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-
-    <button [disabled]="userForm.invalid" type="submit" class="btn btn-primary">Submit</button>
-
-</form>
+    
+    
+        <div class="mb-3 texto-formulario">
+            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+            <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+    
+        <button [disabled]="userForm.invalid" type="submit" class="btn btn-primary button">Ingresar</button>
+    
+    </form>
+    
+</div>
