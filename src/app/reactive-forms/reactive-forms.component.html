@@ -1,23 +1,35 @@
 <h1>reactive-forms</h1>
 
 <form [formGroup]="userForm"(ngSubmit)="onSubmit()">
+
     <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input 
+        formControlName="email" 
+        type="email" 
+        class="form-control" 
+        id="exampleInputEmail1" 
+        aria-describedby="emailHelp" 
+        [ngClass]="{'is-invalid': emailControlIsInvalid }">
+
+        <div class="invalid-feedback">
+            <ng-container *ngIf="emailControl.errors?.['required']"> Este campo es requerido </ng-container>
+           <ng-container *ngIf="emailControl.errors?.['email']"> Ingresa un email válido</ng-container>
+        </div>
     </div>
 
 
     <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
     </div>
 
 
     <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
 
+    <button [disabled]="userForm.invalid" type="submit" class="btn btn-primary">Submit</button>
+
+</form>
